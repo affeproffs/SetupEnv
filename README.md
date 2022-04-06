@@ -5,6 +5,10 @@
 
 # Prerequisites
 - [Git](https://github.com/git-guides/install-git)
+- Run
+```sh
+sudo apt update && sudo apt upgrade
+```
 
 # Steps
 ### 1. Clone the repository
