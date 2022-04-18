@@ -2,6 +2,12 @@
 GREEN='\033[0;32m'
 NOCOLOR='\033[0m'
 
+main() {
+    cd ~
+
+    installVsCode;
+}
+
 # Common functions
 source ./common.sh
 
@@ -17,8 +23,7 @@ installVsCode() {
     if ! askForInstall "vscode"; then
         return;
     fi
-
-    # Installing vs code
+    
     echo "Retrieving .deb-file..."
     cd ~/Downloads
     if curl https://update.code.visualstudio.com/latest/linux-deb-x64/stable -o vscode.deb -L -s -f; then
@@ -36,6 +41,4 @@ installVsCode() {
     sleep 3;
 }
 
-cd ~
-
-installVsCode;
+main
