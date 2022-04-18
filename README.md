@@ -1,5 +1,5 @@
 ### **Ignore this repository.**
-###### I use it to set up my own environment on a new device without a pre-existing SSH key.
+###### I use it to set up my own environment on new devices without a pre-existing SSH key.
 
 &nbsp;
 
