@@ -7,7 +7,8 @@ main() {
 
     installVsCode;
     installNode;
-    installChrome
+    installChrome;
+    installYarn;
 
     echo -e "${GREEN}Installations complete.${NOCOLOR}"
     exit 0;
@@ -81,6 +82,18 @@ installChrome() {
     echo "Installing google chrome..."
     sudo apt install ./google-chrome-stable_current_amd64.deb -qq
     echo -e "${GREEN}Finished installing google chrome.${NOCOLOR}"
+    sleep 3;
+}
+
+installYarn() {
+    clear
+    if ! askForInstall "yarn"; then
+        return;
+    fi
+
+    echo "Installing yarn..."
+    sudo npm install --quiet --global yarn
+    echo -e "${GREEN}Finished installing yarn.${NOCOLOR}"
     sleep 3;
 }
 
