@@ -6,6 +6,10 @@ main() {
     cd ~
 
     installVsCode;
+    installNode;
+
+    echo -e "${GREEN}Installations complete.${NOCOLOR}"
+    exit 0;
 }
 
 # Common functions
@@ -39,6 +43,21 @@ installVsCode() {
     sudo apt install ./vscode.deb -qq
     echo -e "${GREEN}Finished installing vscode.${NOCOLOR}"
     sleep 3;
+}
+
+installNode() {
+    clear
+    if ! askForInstall "node and npm"; then
+        return;
+    fi
+
+    cd ~/Downloads
+    echo "Retrieving node and npm..."
+    curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
+    echo "Installing node and npm..."
+    sudo apt-get install -y nodejs -qq
+    echo -e "${GREEN}Finished installing node and npm.${NOCOLOR}"
+    sleep 3;    
 }
 
 main
