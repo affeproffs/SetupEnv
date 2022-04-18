@@ -7,6 +7,7 @@ main() {
 
     installVsCode;
     installNode;
+    installChrome
 
     echo -e "${GREEN}Installations complete.${NOCOLOR}"
     exit 0;
@@ -58,6 +59,29 @@ installNode() {
     sudo apt-get install -y nodejs -qq
     echo -e "${GREEN}Finished installing node and npm.${NOCOLOR}"
     sleep 3;    
+}
+
+installChrome() {
+    clear
+    if ! askForInstall "google chrome"; then
+        return;
+    fi
+
+    cd ~/Downloads
+    echo "Retrieving google chrome..."
+    if wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; then        
+        echo "Successfully retrieved google chrome"
+        sleep 2        
+    else
+        echo "Failed to retrieve google chrome. Cancelling installation."
+        sleep 3;
+        return
+    fi
+
+    echo "Installing google chrome..."
+    sudo apt install ./google-chrome-stable_current_amd64.deb -qq
+    echo -e "${GREEN}Finished installing google chrome.${NOCOLOR}"
+    sleep 3;
 }
 
 main
