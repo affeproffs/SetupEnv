@@ -37,4 +37,4 @@ The script does the following:
 - installs npm
 - installs vs code
 - installs google chrome
-
+- installs yarn
