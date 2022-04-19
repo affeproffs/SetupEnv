@@ -38,3 +38,4 @@ The script does the following:
 - installs vs code
 - installs google chrome
 - installs yarn
+- installs docker

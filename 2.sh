@@ -9,6 +9,7 @@ main() {
     installNode;
     installChrome;
     installYarn;
+    installDocker;
 
     echo -e "${GREEN}Installations complete.${NOCOLOR}"
     exit 0;
@@ -95,6 +96,43 @@ installYarn() {
     sudo npm install --quiet --global yarn
     echo -e "${GREEN}Finished installing yarn.${NOCOLOR}"
     sleep 3;
+}
+
+installDocker() {
+    clear
+    if ! askForInstall "docker"; then
+        return;
+    fi
+
+    echo "Uninstalling old versions..."
+    sudo apt-get remove docker docker-engine docker.io containerd runc -qq
+    echo "Installing dependencies..."
+    sudo apt-get install \
+        ca-certificates \
+        curl \
+        gnupg \
+        lsb-release -qq
+
+    # GPG key and stable repo
+    echo "Setting up repository for download..."
+    sleep 1
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg    
+    echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+      $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+    sudo apt-get update -qq
+    echo "Installing docker..."
+    sudo apt-get install docker-ce docker-ce-cli containerd.io -qq
+    echo -e "${GREEN}Finished installing docker.${NOCOLOR}"
+    sleep 1;
+    if ask "Wish to create a docker group? For non-sudo access."; then
+        sudo groupadd docker
+        sudo usermod -aG docker $USER
+        newgrp docker
+        echo "Added docker group."
+        sleep 2;
+    fi    
 }
 
 main
