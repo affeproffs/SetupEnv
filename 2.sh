@@ -10,6 +10,7 @@ main() {
     installChrome;
     installYarn;
     installDocker;
+    installPip;
 
     echo -e "${GREEN}Installations complete.${NOCOLOR}"
     exit 0;
@@ -133,6 +134,18 @@ installDocker() {
         echo "Added docker group."
         sleep 2;
     fi    
+}
+
+installPip() {
+    clear
+    if ! askForInstall "pip"; then
+        return;
+    fi
+
+    echo "Installing pip..."
+    sudo apt-get install python3-pip -qq
+    echo -e "${GREEN}Finished installing pip.${NOCOLOR}"
+    sleep 3;
 }
 
 main
