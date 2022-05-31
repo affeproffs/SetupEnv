@@ -4,13 +4,14 @@ NOCOLOR='\033[0m'
 
 main() {
     cd ~
-
+    
     installVsCode;
     installNode;
     installChrome;
     installYarn;
     installDocker;
     installPip;
+    install1Password;
 
     echo -e "${GREEN}Installations complete.${NOCOLOR}"
     exit 0;
@@ -72,7 +73,7 @@ installChrome() {
 
     cd ~/Downloads
     echo "Retrieving google chrome..."
-    if wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb; then        
+    if wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -q; then
         echo "Successfully retrieved google chrome"
         sleep 2        
     else
@@ -146,6 +147,30 @@ installPip() {
     sudo apt-get install python3-pip -qq
     echo -e "${GREEN}Finished installing pip.${NOCOLOR}"
     sleep 3;
+}
+
+install1Password() {
+    clear
+    if ! askForInstall "1Password"; then
+        return;
+    fi
+
+    cd ~/Downloads
+    echo "Retrieving 1Password..."
+    if wget https://downloads.1password.com/linux/debian/amd64/stable/1password-latest.deb -q; then
+        echo "Successfully retrieved 1Password"
+        sleep 2        
+    else
+        echo "Failed to retrieve 1Password. Cancelling installation."
+        sleep 3;
+        return
+    fi
+
+    echo "Installing 1Password..."
+    sudo apt install ./1password-latest.deb -qq
+    echo -e "${GREEN}Finished installing 1Password.${NOCOLOR}"
+    sleep 3;
+    
 }
 
 main

@@ -40,6 +40,8 @@ The script does the following:
 - installs google chrome
 - installs yarn
 - installs docker
+- installs pip
+- installs 1Password
 
 &nbsp;
 ### Optionals and links
