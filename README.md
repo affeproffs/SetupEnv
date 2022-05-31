@@ -16,7 +16,7 @@ sudo apt update && sudo apt upgrade
 cd 
 git clone git@github.com:affeproffs/SetupEnv.git
 ```
-
+&nbsp;
 ### 2. Run `1.sh` - basic configuration
 ```sh
 cd SetupEnv
@@ -28,6 +28,7 @@ The script does the following:
 - clones GitScripts
 - sets git aliases and .gitconfig
 
+&nbsp;
 ### 3. Run `2.sh` - program installation
 ```sh
 bash 2.sh
@@ -39,3 +40,7 @@ The script does the following:
 - installs google chrome
 - installs yarn
 - installs docker
+
+&nbsp;
+### Optionals and links
+##### Set up network drivers for RTL8811AU, RTL8812AU, RTL8814AU chipsets --> [Link](https://blog.abysm.org/2020/03/realtek-802-11ac-usb-wi-fi-linux-driver-installation/)
