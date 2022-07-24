@@ -10,6 +10,7 @@ main() {
     installChrome;
     installYarn;
     installDocker;
+    installDockerCompose;
     installPip;
     install1Password;
 
@@ -135,6 +136,18 @@ installDocker() {
         echo "Added docker group."
         sleep 2;
     fi    
+}
+
+installDockerCompose() {
+    clear
+    if ! askForInstall "docker compose (requires docker)"; then
+        return;
+    fi
+
+    echo "Installing docker compose..."
+    sudo apt-get install docker-compose-plugin
+    echo -e "${GREEN}Finished installing docker compose.${NOCOLOR}"
+    sleep 3;
 }
 
 installPip() {
