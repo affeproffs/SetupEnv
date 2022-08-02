@@ -7,6 +7,7 @@ main() {
     
     installVsCode;
     installNode;
+    installNvm;
     installChrome;
     installYarn;
     installDocker;
@@ -63,6 +64,19 @@ installNode() {
     echo "Installing node and npm..."
     sudo apt-get install -y nodejs -qq
     echo -e "${GREEN}Finished installing node and npm.${NOCOLOR}"
+    sleep 3;    
+}
+
+installNvm() {
+    clear
+    if ! askForInstall "nvm"; then
+        return;
+    fi
+
+    cd ~/Downloads
+    echo "Retrieving and installing nvm..."
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash        
+    echo -e "${GREEN}Finished installing nvm.${NOCOLOR}"
     sleep 3;    
 }
 
