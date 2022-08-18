@@ -48,17 +48,19 @@ The script does the following:
 bash 2.sh
 ```
 
-The script does the following:
+The script installs the following:
 
-- installs node
-- installs npm
-- installs nvm
-- installs vs code
-- installs google chrome
-- installs yarn
-- installs docker
-- installs pip
-- installs 1Password
+- node
+- npm
+- nvm
+- vs code
+- google chrome
+- yarn
+- docker
+- docker-compose
+- kubectl
+- pip
+- 1Password
 
 &nbsp;
 

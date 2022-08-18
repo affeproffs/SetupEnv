@@ -12,6 +12,7 @@ main() {
     installYarn;
     installDocker;
     installDockerCompose;
+    installKubeCTL;
     installPip;
     install1Password;
 
@@ -161,6 +162,21 @@ installDockerCompose() {
     echo "Installing docker compose..."
     sudo apt-get install docker-compose-plugin
     echo -e "${GREEN}Finished installing docker compose.${NOCOLOR}"
+    sleep 3;
+}
+
+installKubeCTL() {
+    clear
+    if ! askForInstall "kubectl"; then
+        return;
+    fi
+
+    cd ~/Downloads
+    echo "Retrieving kubectl..."
+    curl -LOs "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    echo "Installing kubectl..."
+    sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl    
+    echo -e "${GREEN}Finished installing kubectl.${NOCOLOR}"
     sleep 3;
 }
 
