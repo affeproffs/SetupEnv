@@ -30,7 +30,7 @@ git clone git@github.com:affeproffs/SetupEnv.git
 
 ```sh
 cd SetupEnv
-bash 1.sh
+./1.sh
 ```
 
 The script does the following:
@@ -45,7 +45,7 @@ The script does the following:
 ### 3. Run `2.sh` - program installation
 
 ```sh
-bash 2.sh
+./2.sh
 ```
 
 The script optionally installs the following:
@@ -60,6 +60,7 @@ The script optionally installs the following:
 - docker-compose
 - kubectl
 - minikube
+- aws cli
 - pip
 - 1Password
 

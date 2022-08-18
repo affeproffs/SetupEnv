@@ -13,7 +13,8 @@ main() {
     installDocker;
     installDockerCompose;
     installKubectl;
-    installMinikube
+    installMinikube;
+    installAwsCli;
     installPip;
     install1Password;
 
@@ -193,6 +194,22 @@ installMinikube() {
     echo "Installing minikube..."
     sudo install minikube-linux-amd64 /usr/local/bin/minikube
     echo -e "${GREEN}Finished installing minikube.${NOCOLOR}"
+    sleep 3;
+}
+
+installAwsCli() {
+    clear
+    if ! askForInstall "aws cli"; then
+        return;
+    fi
+
+    cd ~/Downloads
+    echo "Retrieving aws cli..."
+    curl -s "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    echo "Installing aws cli..."
+    unzip awscliv2.zip
+    sudo ./aws/install
+    echo -e "${GREEN}Finished installing aws cli.${NOCOLOR}"
     sleep 3;
 }
 
