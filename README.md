@@ -48,7 +48,7 @@ The script does the following:
 bash 2.sh
 ```
 
-The script installs the following:
+The script optionally installs the following:
 
 - node
 - npm
@@ -59,6 +59,7 @@ The script installs the following:
 - docker
 - docker-compose
 - kubectl
+- minikube
 - pip
 - 1Password
 

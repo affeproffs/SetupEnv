@@ -12,7 +12,8 @@ main() {
     installYarn;
     installDocker;
     installDockerCompose;
-    installKubeCTL;
+    installKubectl;
+    installMinikube
     installPip;
     install1Password;
 
@@ -165,7 +166,7 @@ installDockerCompose() {
     sleep 3;
 }
 
-installKubeCTL() {
+installKubectl() {
     clear
     if ! askForInstall "kubectl"; then
         return;
@@ -177,6 +178,21 @@ installKubeCTL() {
     echo "Installing kubectl..."
     sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl    
     echo -e "${GREEN}Finished installing kubectl.${NOCOLOR}"
+    sleep 3;
+}
+
+installMinikube() {
+    clear
+    if ! askForInstall "minikube"; then
+        return;
+    fi
+
+    cd ~/Downloads
+    echo "Retrieving minikube..."
+    curl -LOs https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    echo "Installing minikube..."
+    sudo install minikube-linux-amd64 /usr/local/bin/minikube
+    echo -e "${GREEN}Finished installing minikube.${NOCOLOR}"
     sleep 3;
 }
 
