@@ -52,6 +52,7 @@ installVsCode() {
     echo "Installing .deb-file..."
     sudo apt install ./vscode.deb -qq
     echo -e "${GREEN}Finished installing vscode.${NOCOLOR}"
+    rm vscode.deb
     sleep 3;
 }
 
@@ -78,9 +79,9 @@ installNvm() {
 
     cd ~/Downloads
     echo "Retrieving and installing nvm..."
-    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash        
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
     echo -e "${GREEN}Finished installing nvm.${NOCOLOR}"
-    sleep 3;    
+    sleep 3;
 }
 
 installChrome() {
@@ -103,6 +104,7 @@ installChrome() {
     echo "Installing google chrome..."
     sudo apt install ./google-chrome-stable_current_amd64.deb -qq
     echo -e "${GREEN}Finished installing google chrome.${NOCOLOR}"
+    rm google-chrome-stable_current_amd64.deb
     sleep 3;
 }
 
@@ -210,6 +212,7 @@ installAwsCli() {
     unzip awscliv2.zip
     sudo ./aws/install
     echo -e "${GREEN}Finished installing aws cli.${NOCOLOR}"
+    rm awscliv2.zip
     sleep 3;
 }
 
@@ -245,6 +248,7 @@ install1Password() {
     echo "Installing 1Password..."
     sudo apt install ./1password-latest.deb -qq
     echo -e "${GREEN}Finished installing 1Password.${NOCOLOR}"
+    rm 1password-latest.deb
     sleep 3;
     
 }
