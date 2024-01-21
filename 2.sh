@@ -17,6 +17,7 @@ main() {
     installAwsCli;
     installPip;
     install1Password;
+    installRust;
 
     echo -e "${GREEN}Installations complete.${NOCOLOR}"
     exit 0;
@@ -251,6 +252,18 @@ install1Password() {
     rm 1password-latest.deb
     sleep 3;
     
+}
+
+installRust() {
+    clear
+    if ! askForInstall "Rust"; then
+        return;
+    fi
+
+    echo "Installing rust..."
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh    
+    echo -e "${GREEN}Finished installing rust.${NOCOLOR}"
+    sleep 3;
 }
 
 main
