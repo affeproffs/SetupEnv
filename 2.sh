@@ -8,8 +8,9 @@ main() {
     installVsCode;
     installNode;
     installNvm;
-    installChrome;
     installYarn;
+    installBun;
+    installChrome;    
     installDocker;
     installDockerCompose;
     installKubectl;
@@ -67,7 +68,7 @@ installNode() {
     echo "Retrieving node and npm..."
     curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
     echo "Installing node and npm..."
-    sudo apt-get install -y nodejs -qq
+    sudo apt install -y nodejs -qq
     echo -e "${GREEN}Finished installing node and npm.${NOCOLOR}"
     sleep 3;    
 }
@@ -263,6 +264,18 @@ installRust() {
     echo "Installing rust..."
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh    
     echo -e "${GREEN}Finished installing rust.${NOCOLOR}"
+    sleep 3;
+}
+
+installBun() {
+    clear
+    if ! askForInstall "Bun"; then
+        return;
+    fi
+
+    echo "Installing bun..."
+    curl -fsSL https://bun.sh/install | bash
+    echo -e "${GREEN}Finished installing bun.${NOCOLOR}"
     sleep 3;
 }
 
