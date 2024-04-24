@@ -4,21 +4,25 @@ NOCOLOR='\033[0m'
 
 main() {
     cd ~
-    
-    installVsCode;
+
+    # Technologies
     installNode;
     installNvm;
     installYarn;
     installBun;
-    installChrome;    
     installDocker;
     installDockerCompose;
     installKubectl;
     installMinikube;
     installAwsCli;
     installPip;
-    install1Password;
     installRust;
+
+    # Applications
+    installVsCode;
+    installSpotify;
+    install1Password;
+    installChrome;
 
     echo -e "${GREEN}Installations complete.${NOCOLOR}"
     exit 0;
@@ -276,6 +280,21 @@ installBun() {
     echo "Installing bun..."
     curl -fsSL https://bun.sh/install | bash
     echo -e "${GREEN}Finished installing bun.${NOCOLOR}"
+    sleep 3;
+}
+
+installSpotify() {
+    clear
+    if ! askForInstall "Spotify"; then
+        return;
+    fi
+
+    echo "Installing spotify..."
+    cd ~/Downloads
+    curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+    echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+    sudo apt-get update -qq && sudo apt-get install spotify-client -qq
+    echo -e "${GREEN}Finished installing spotify.${NOCOLOR}"
     sleep 3;
 }
 
