@@ -17,6 +17,7 @@ main() {
     installAwsCli;
     installPip;
     installRust;
+    installRedis;
 
     # Applications
     installVsCode;
@@ -297,5 +298,23 @@ installSpotify() {
     echo -e "${GREEN}Finished installing spotify.${NOCOLOR}"
     sleep 3;
 }
+
+installRedis() {
+    clear
+    if ! askForInstall "redis"; then
+        return;
+    fi
+
+    echo "Installing redis..."
+    cd ~/Downloads
+    curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+    sudo apt-get update
+    sudo apt-get install redis -qq
+    sudo apt-get install redis-server -qq
+    echo -e "${GREEN}Finished installing redis.${NOCOLOR}"
+    sleep 3;
+}
+
 
 main
