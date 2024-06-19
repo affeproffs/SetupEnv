@@ -9,6 +9,7 @@ main() {
     installNode;
     installNvm;
     installYarn;
+    installPnpm;
     installBun;
     installDocker;
     installDockerCompose;
@@ -316,5 +317,17 @@ installRedis() {
     sleep 3;
 }
 
+installPnpm() {
+    clear
+    if ! askForInstall "pnpm"; then
+        return;
+    fi
+
+    echo "Installing pnpm..."
+    cd ~/Downloads
+    curl -fsSL https://get.pnpm.io/install.sh | sh -    
+    echo -e "${GREEN}Finished installing pnpm.${NOCOLOR}"
+    sleep 3;
+}
 
 main
