@@ -16,6 +16,7 @@ main() {
     installKubectl;
     installMinikube;
     installAwsCli;
+    installAz;
     installPip;
     installRust;
     installRedis;
@@ -326,6 +327,19 @@ installPnpm() {
     echo "Installing pnpm..."
     cd ~/Downloads
     curl -fsSL https://get.pnpm.io/install.sh | sh -    
+    echo -e "${GREEN}Finished installing pnpm.${NOCOLOR}"
+    sleep 3;
+}
+
+installAz() {
+    clear
+    if ! askForInstall "az (azure CLI)"; then
+        return;
+    fi
+
+    echo "Installing az..."
+    cd ~/Downloads
+    curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
     echo -e "${GREEN}Finished installing pnpm.${NOCOLOR}"
     sleep 3;
 }
