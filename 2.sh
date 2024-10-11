@@ -20,6 +20,7 @@ main() {
     installAz;
     installPip;
     installRust;
+    installDotNet;
     installRedis;
 
     # Applications
@@ -358,6 +359,27 @@ installHelm() {
     ./get_helm.sh
     rm get_helm.sh
     echo -e "${GREEN}Finished installing helm.${NOCOLOR}"
+    sleep 3;
+}
+
+installDotNet() {
+    clear
+    if ! askForInstall ".NET"; then
+        return;
+    fi
+
+    echo "Installing .NET..."
+    cd ~/Downloads
+    wget https://dot.net/v1/dotnet-install.sh -q -O dotnet-install.sh
+    chmod +x ./dotnet-install.sh
+    ./dotnet-install.sh --version latest
+    rm dotnet-install.sh
+
+    echo '# .NET' >> ~/.bashrc
+    echo 'export DOTNET_ROOT=$HOME/.dotnet' >> ~/.bashrc
+    echo 'export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools' >> ~/.bashrc
+
+    echo -e "${GREEN}Finished installing .NET.${NOCOLOR}"
     sleep 3;
 }
 
