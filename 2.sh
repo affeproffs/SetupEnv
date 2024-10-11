@@ -13,6 +13,7 @@ main() {
     installBun;
     installDocker;
     installDockerCompose;
+    installHelm;
     installKubectl;
     installMinikube;
     installAwsCli;
@@ -333,14 +334,30 @@ installPnpm() {
 
 installAz() {
     clear
-    if ! askForInstall "az (azure CLI)"; then
+    if ! askForInstall "azure CLI"; then
         return;
     fi
 
     echo "Installing az..."
     cd ~/Downloads
     curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-    echo -e "${GREEN}Finished installing pnpm.${NOCOLOR}"
+    echo -e "${GREEN}Finished installing az.${NOCOLOR}"
+    sleep 3;
+}
+
+installHelm() {
+    clear
+    if ! askForInstall "helm"; then
+        return;
+    fi
+
+    echo "Installing helm..."
+    cd ~/Downloads
+    curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+    chmod 700 get_helm.sh
+    ./get_helm.sh
+    rm get_helm.sh
+    echo -e "${GREEN}Finished installing helm.${NOCOLOR}"
     sleep 3;
 }
 
