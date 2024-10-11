@@ -21,6 +21,7 @@ main() {
     installPip;
     installRust;
     installDotNet;
+    installPowerShell;
     installRedis;
 
     # Applications
@@ -380,6 +381,25 @@ installDotNet() {
     echo 'export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools' >> ~/.bashrc
 
     echo -e "${GREEN}Finished installing .NET.${NOCOLOR}"
+    sleep 3;
+}
+
+installPowerShell() {
+    clear
+    if ! askForInstall "PowerShell"; then
+        return;
+    fi
+
+    echo "Installing PowerShell..."
+    cd ~/Downloads
+    source /etc/os-release
+    wget -q https://packages.microsoft.com/config/debian/$VERSION_ID/packages-microsoft-prod.deb
+    sudo dpkg -i packages-microsoft-prod.deb
+    rm packages-microsoft-prod.deb
+    sudo apt-get update -qq
+    sudo apt-get install -y powershell -qq
+
+    echo -e "${GREEN}Finished installing PowerShell.${NOCOLOR}"
     sleep 3;
 }
 
