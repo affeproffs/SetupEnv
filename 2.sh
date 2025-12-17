@@ -23,6 +23,7 @@ main() {
     installDotNet;
     installPowerShell;
     installRedis;
+    installPostgreSQL;
 
     # Applications
     installVsCode;
@@ -301,6 +302,19 @@ installSpotify() {
     echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
     sudo apt-get update -qq && sudo apt-get install spotify-client -qq
     echo -e "${GREEN}Finished installing spotify.${NOCOLOR}"
+    sleep 3;
+}
+
+installPostgreSQL() {
+    clear
+    if ! askForInstall "postgresql"; then
+        return;
+    fi
+
+    echo "Installing postgresql..."
+    sudo apt-get update
+    sudo apt-get install postgresql
+    echo -e "${GREEN}Finished installing postgresql.${NOCOLOR}"
     sleep 3;
 }
 
