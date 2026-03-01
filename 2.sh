@@ -30,6 +30,7 @@ main() {
     installSpotify;
     install1Password;
     installChrome;
+    installCodex;
 
     echo -e "${GREEN}Installations complete.${NOCOLOR}"
     exit 0;
@@ -414,6 +415,18 @@ installPowerShell() {
     sudo apt-get install -y powershell -qq
 
     echo -e "${GREEN}Finished installing PowerShell.${NOCOLOR}"
+    sleep 3;
+}
+
+installCodex() {
+    clear
+    if ! askForInstall "Codex"; then
+        return;
+    fi
+
+    echo "Installing Codex..."
+    npm i -g @openai/codex@latest
+    echo -e "${GREEN}Finished installing Codex.${NOCOLOR}"
     sleep 3;
 }
 
