@@ -24,6 +24,7 @@ main() {
     installPowerShell;
     installRedis;
     installPostgreSQL;
+    installOpenClaw;
 
     # Applications
     installVsCode;
@@ -427,6 +428,18 @@ installCodex() {
     echo "Installing Codex..."
     npm i -g @openai/codex@latest
     echo -e "${GREEN}Finished installing Codex.${NOCOLOR}"
+    sleep 3;
+}
+
+installOpenClaw() {
+    clear
+    if ! askForInstall "OpenClaw"; then
+        return;
+    fi
+
+    echo "Installing OpenClaw..."
+    curl -fsSL https://openclaw.ai/install.sh | bash
+    echo -e "${GREEN}Finished installing OpenClaw.${NOCOLOR}"
     sleep 3;
 }
 
