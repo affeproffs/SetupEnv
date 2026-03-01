@@ -21,6 +21,8 @@ main() {
     installPip;
     installRust;
     installDotNet;
+    installRuby;
+    installRails;
     installPowerShell;
     installRedis;
     installPostgreSQL;
@@ -440,6 +442,37 @@ installOpenClaw() {
     echo "Installing OpenClaw..."
     curl -fsSL https://openclaw.ai/install.sh | bash
     echo -e "${GREEN}Finished installing OpenClaw.${NOCOLOR}"
+    sleep 3;
+}
+
+installRuby() {
+    clear
+    if ! askForInstall "Ruby & Mise(pkg manager)"; then
+        return;
+    fi
+
+    echo "Installing Ruby dependencies..."
+    sudo apt update
+    sudo apt install build-essential rustc libssl-dev libyaml-dev zlib1g-dev libgmp-dev    
+    echo "Installing Ruby & Mise..."
+    sleep 1;
+    curl https://mise.run | sh
+    echo 'eval "$(~/.local/bin/mise activate bash)"' >> ~/.bashrc
+    source ~/.bashrc
+    mise use -g ruby@3
+    echo -e "${GREEN}Finished installing Ruby & Mise.${NOCOLOR}"
+    sleep 3;
+}
+
+installRails() {
+    clear
+    if ! askForInstall "Rails"; then
+        return;
+    fi
+
+    echo "Installing Rails..."
+    gem install rails
+    echo -e "${GREEN}Finished installing Rails.${NOCOLOR}"
     sleep 3;
 }
 
