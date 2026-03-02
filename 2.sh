@@ -11,6 +11,7 @@ main() {
     installYarn;
     installPnpm;
     installBun;
+    installBrew;
     installDocker;
     installDockerCompose;
     installHelm;
@@ -473,6 +474,20 @@ installRails() {
     echo "Installing Rails..."
     gem install rails
     echo -e "${GREEN}Finished installing Rails.${NOCOLOR}"
+    sleep 3;
+}
+
+installBrew() {
+    clear
+    if ! askForInstall "Homebrew"; then
+        return;
+    fi
+
+    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"' >> ~/.bashrc
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
+    echo -e "${GREEN}Finished installing Homebrew.${NOCOLOR}"
     sleep 3;
 }
 
