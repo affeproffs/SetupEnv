@@ -16,6 +16,7 @@ main() {
     installDockerCompose;
     installHelm;
     installKubectl;
+    installK9s;
     installMinikube;
     installAwsCli;
     installAz;
@@ -487,6 +488,18 @@ installBrew() {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"' >> ~/.bashrc
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
+    echo -e "${GREEN}Finished installing Homebrew.${NOCOLOR}"
+    sleep 3;
+}
+
+installK9s() {
+    clear
+    if ! askForInstall "K9s (requires brew)"; then
+        return;
+    fi
+
+    echo "Installing K9s..."
+    brew install derailed/k9s/k9s
     echo -e "${GREEN}Finished installing Homebrew.${NOCOLOR}"
     sleep 3;
 }
