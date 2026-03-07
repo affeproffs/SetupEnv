@@ -19,6 +19,7 @@ main() {
     installK9s;
     installMinikube;
     installAwsCli;
+    installGcloud;
     installAz;
     installPip;
     installRust;
@@ -233,6 +234,23 @@ installAwsCli() {
     sudo ./aws/install
     echo -e "${GREEN}Finished installing aws cli.${NOCOLOR}"
     rm awscliv2.zip
+    sleep 3;
+}
+
+installGcloud() {
+    clear
+    if ! askForInstall "Google Cloud CLI (gcloud)"; then
+        return;
+    fi
+
+    echo "Installing gcloud..."
+    cd ~/Downloads
+    sudo mkdir -p /etc/apt/keyrings
+    curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor --yes -o /etc/apt/keyrings/google-cloud.gpg
+    echo "deb [signed-by=/etc/apt/keyrings/google-cloud.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list > /dev/null
+    sudo apt-get update -qq
+    sudo apt-get install google-cloud-cli -qq
+    echo -e "${GREEN}Finished installing gcloud.${NOCOLOR}"
     sleep 3;
 }
 
