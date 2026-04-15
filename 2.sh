@@ -35,6 +35,7 @@ main() {
     installGh;
     installCodex;
     installVsCode;
+    installBeekeeper;
     installSpotify;
     install1Password;
     installChrome;    
@@ -74,6 +75,37 @@ installVsCode() {
     sudo apt install ./vscode.deb -qq
     echo -e "${GREEN}Finished installing vscode.${NOCOLOR}"
     rm vscode.deb
+    sleep 3;
+}
+
+installBeekeeper() {
+    clear
+    if ! askForInstall "beekeeper studio"; then
+        return;
+    fi
+
+    echo "Retrieving beekeeper studio..."
+    cd ~/Downloads
+    if ! releaseUrl=$(curl -fsSLI -o /dev/null -w '%{url_effective}' https://github.com/beekeeper-studio/beekeeper-studio/releases/latest); then
+        echo "Failed to resolve latest beekeeper studio release. Cancelling installation."
+        sleep 3;
+        return;
+    fi
+    version=${releaseUrl##*/}
+    debUrl="https://github.com/beekeeper-studio/beekeeper-studio/releases/download/${version}/beekeeper-studio_${version#v}_amd64.deb"
+    if curl "$debUrl" -o beekeeper-studio.deb -L -s -f; then
+        echo "Successfully retrieved beekeeper studio"
+        sleep 2;
+    else
+        echo "Failed to retrieve beekeeper studio. Cancelling installation."
+        sleep 3;
+        return;
+    fi
+
+    echo "Installing beekeeper studio..."
+    sudo apt install ./beekeeper-studio.deb -qq
+    echo -e "${GREEN}Finished installing beekeeper studio.${NOCOLOR}"
+    rm beekeeper-studio.deb
     sleep 3;
 }
 
